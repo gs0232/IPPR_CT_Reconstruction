@@ -1,0 +1,268 @@
+{
+  "dataset_name": "PhantomX",
+  "task": "sparse_view_ct",
+  "date": "2026-10-03",
+  "verdict": "❌ NOT SUITABLE AS IS — 1 blocker(s). Fix them or reject the dataset.",
+  "facts": {
+    "files": 3640,
+    "size_on_disk_GB": 1.92,
+    "samples (images/volumes)": 9,
+    "2D slices total": 3639,
+    "in-plane sizes": "(512, 512)",
+    "spacing known": "9/9",
+    "in-plane spacing mm": "0.468–0.507",
+    "slice spacing mm": "0.50–0.50",
+    "intensity scale": "Hounsfield units (HU)",
+    "patients": 3,
+    "classes": 9,
+    "imbalance ratio (max/min)": 1.0
+  },
+  "provenance": {
+    "source_url": "https://www.kaggle.com/datasets/phantomxdata/head-ct-collection-phantomx?resource=download",
+    "publisher": "PhantomX GmbH",
+    "paper_to_cite": "PhantomX Abdomen Lesion CT Collection",
+    "version_and_date": "2024",
+    "licence": "CC BY-SA 4.0",
+    "access": "https://phantomx.de/product-tag/data/",
+    "ethics_approval": "",
+    "de_identification": "",
+    "acquisition": "",
+    "population": "",
+    "label_source": "not needed (reconstruction)",
+    "raw_data_available": "",
+    "official_split": "",
+    "known_issues": ""
+  },
+  "findings": [
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'ethics_approval' unknown — For human data the paper should state ethics approval / consent."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'de_identification' unknown — How were names, dates, faces (head CT/MR!) removed?"
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'acquisition' unknown — Scanner vendors, sites, years, protocol. One scanner = poor generalisation."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'population' unknown — Who is included? Bias in age/sex/disease affects what your model learns."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'raw_data_available' unknown — For reconstruction: are raw projections/sinograms given, or only images?"
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'official_split' unknown — An official split makes your results comparable with published work."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'known_issues' unknown — Search '<dataset name> issues / errata / github issues'."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "INFO",
+      "message": "Share-alike (SA): anything you publish from it must use the same licence."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "PASS",
+      "message": "CC BY: free use with citation."
+    },
+    {
+      "section": "Files & size",
+      "status": "INFO",
+      "message": "3640 files, 1.92 GB on disk."
+    },
+    {
+      "section": "Files & size",
+      "status": "TODO",
+      "message": "No README/LICENSE in the download: get licence & description from the source website."
+    },
+    {
+      "section": "Files & size",
+      "status": "INFO",
+      "message": "Metadata/label tables found: dataset_info.csv"
+    },
+    {
+      "section": "Readability",
+      "status": "PASS",
+      "message": "All 3639 image files readable."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "9 samples (images or volumes) = 3639 2D slices in total."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "PASS",
+      "message": "All images have the same in-plane size (512, 512)."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "Volumes: 325–565 slices (median 325)."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "In-plane pixel size 0.468–0.507 mm (known for 9/9)."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "Slice spacing 0.50–0.50 mm."
+    },
+    {
+      "section": "Pixel values",
+      "status": "INFO",
+      "message": "Checked 9 random samples. Stored data type(s): int16."
+    },
+    {
+      "section": "Pixel values",
+      "status": "PASS",
+      "message": "Consistent intensity scale: Hounsfield units (HU) (range -2048 … 1903)."
+    },
+    {
+      "section": "Pixel values",
+      "status": "INFO",
+      "message": "Values below −1024 HU present (outside-scan-field padding like −2048/−3024). Clip to −1024 before computing anything physical."
+    },
+    {
+      "section": "Patients & splits",
+      "status": "INFO",
+      "message": "3 patients; samples per patient: min 3, median 3, max 3."
+    },
+    {
+      "section": "Patients & splits",
+      "status": "FAIL",
+      "message": "Only 3 patients: no meaningful train/val/test split possible."
+    },
+    {
+      "section": "Patients & splits",
+      "status": "INFO",
+      "message": "No train/val/test folders found: you'll make your own split (per patient, fixed seed)."
+    },
+    {
+      "section": "Labels & class balance",
+      "status": "PASS",
+      "message": "Reasonably balanced: 9 classes, largest/smallest = 1.0× ('AIDR3D0.5mm_FC26_300_174818.022_202' 1 vs 'AIDR3D0.5mm_FC26_300_174818.022_202' 1)."
+    },
+    {
+      "section": "Labels & class balance",
+      "status": "WARN",
+      "message": "9 class(es) with < 30 samples: {'AIDR3D0.5mm_FC26_300_174818.022_202': 1, 'FBP0.5mm_FC26_300_174818.022_205': 1, 'AiCE0.5mm_BRAIN-CTA_300_174818.022_206': 1, 'AiCE_BRAIN_CTA_300_0.5_5': 1, 'AIDR3D_FC08_300_0.5_13': 1, 'FBP_FC08_300_0.5_15': 1, '94_120_300_FC26_AIDR3D_154123.594': 1, '95_120_300_FC26_FBP_154123.594': 1, '98_120_300_BRAIN-CTA_AiCE_154123.594': 1}."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "Manufacturer: all patients = 'Canon Medical Systems' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "ManufacturerModelName: all patients = 'Aquilion ONE' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "PASS",
+      "message": "InstitutionName: 2 groups, largest 67%."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "KVP: all patients = '120.0' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "PASS",
+      "message": "ConvolutionKernel: 2 groups, largest 67%."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "BodyPartExamined: all patients = 'NECK' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "PatientSex: all patients = 'M' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "PASS",
+      "message": "age_group: 2 groups, largest 67%."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "WARN",
+      "message": "SliceThickness: all patients = '0.5' — no diversity, results may not generalise beyond it."
+    },
+    {
+      "section": "Duplicates",
+      "status": "PASS",
+      "message": "No exact duplicate files."
+    },
+    {
+      "section": "Duplicates",
+      "status": "WARN",
+      "message": "5 near-identical sample(s) among 9 checked (e.g. ['phantomx_head_dataset/50-03/300/95_120_300_FC26_FBP_154123.594 [series …6.891789]', 'phantomx_head_dataset/50-03/300/98_120_300_BRAIN-CTA_AiCE_154123.594 [series …3.335578]']). Look at them."
+    },
+    {
+      "section": "Privacy",
+      "status": "WARN",
+      "message": "Possibly identifying DICOM tags filled in: {'PatientName': 9, 'PatientBirthDate': 9, 'PatientAddress': 6, 'ReferringPhysicianName': 9, 'InstitutionAddress': 9}. Check whether real or pseudonyms; keep data private either way."
+    },
+    {
+      "section": "Privacy",
+      "status": "INFO",
+      "message": "Study dates present (often shifted for anonymisation — don't rely on them)."
+    },
+    {
+      "section": "Task fit",
+      "status": "PASS",
+      "message": "All series are CT."
+    },
+    {
+      "section": "Task fit",
+      "status": "PASS",
+      "message": "Intensities are physical (Hounsfield units (HU)) → forward projection is meaningful."
+    },
+    {
+      "section": "Task fit",
+      "status": "PASS",
+      "message": "Pixel size known → you can define a realistic scanner geometry (mm)."
+    },
+    {
+      "section": "Task fit",
+      "status": "PASS",
+      "message": "Square slices — fits standard parallel/fan-beam simulation."
+    },
+    {
+      "section": "Task fit",
+      "status": "INFO",
+      "message": "Only reconstructed images → you'll simulate sparse projections yourself (standard practice). Avoid the 'inverse crime': simulate on a finer grid / different projector than you reconstruct with, and add noise."
+    },
+    {
+      "section": "Task fit",
+      "status": "INFO",
+      "message": "Labels: none needed — the full-view image is the target. Note that the 'ground truth' is itself a reconstruction (noise, kernel, artefacts)."
+    },
+    {
+      "section": "Task fit",
+      "status": "INFO",
+      "message": "Reconstruction kernels: {'FC26': 4, 'BRAIN_CTA': 3, 'FC08': 2} (sharp kernels = noisier targets)."
+    }
+  ]
+}

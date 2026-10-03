@@ -1,0 +1,198 @@
+{
+  "dataset_name": "Brain CT npy-1",
+  "task": "sparse_view_ct",
+  "date": "2026-10-03",
+  "verdict": "❌ NOT SUITABLE AS IS — 1 blocker(s). Fix them or reject the dataset.",
+  "facts": {
+    "files": 9997,
+    "size_on_disk_GB": 62.9,
+    "samples (images/volumes)": 9997,
+    "2D slices total": 5118464,
+    "in-plane sizes": "(512, 3)",
+    "spacing known": "0/9997",
+    "intensity scale": "normalised (0–1)"
+  },
+  "provenance": {
+    "source_url": "https://www.kaggle.com/datasets/josepc/brain-ct-npy-1",
+    "publisher": "Jose Pérez Cano",
+    "paper_to_cite": "",
+    "version_and_date": "2021",
+    "licence": "Community Data License Agreement - Sharing - Version 1.0",
+    "access": "https://www.kaggle.com/datasets/josepc/brain-ct",
+    "ethics_approval": "",
+    "de_identification": "",
+    "acquisition": "",
+    "population": "",
+    "label_source": "not needed (reconstruction)",
+    "raw_data_available": "",
+    "official_split": "",
+    "known_issues": ""
+  },
+  "findings": [
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'paper_to_cite' unknown — Look for a data-descriptor paper (Scientific Data, Medical Physics, challenge paper)."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'ethics_approval' unknown — For human data the paper should state ethics approval / consent."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'de_identification' unknown — How were names, dates, faces (head CT/MR!) removed?"
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'acquisition' unknown — Scanner vendors, sites, years, protocol. One scanner = poor generalisation."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'population' unknown — Who is included? Bias in age/sex/disease affects what your model learns."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'raw_data_available' unknown — For reconstruction: are raw projections/sinograms given, or only images?"
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'official_split' unknown — An official split makes your results comparable with published work."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "TODO",
+      "message": "'known_issues' unknown — Search '<dataset name> issues / errata / github issues'."
+    },
+    {
+      "section": "Origin & licence",
+      "status": "WARN",
+      "message": "Custom / restricted terms: read the agreement (sharing, publication, storage rules)."
+    },
+    {
+      "section": "Files & size",
+      "status": "INFO",
+      "message": "9997 files, 62.90 GB on disk."
+    },
+    {
+      "section": "Files & size",
+      "status": "TODO",
+      "message": "No README/LICENSE in the download: get licence & description from the source website."
+    },
+    {
+      "section": "Readability",
+      "status": "PASS",
+      "message": "All 9997 image files readable."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "9997 samples (images or volumes) = 5118464 2D slices in total."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "PASS",
+      "message": "All images have the same in-plane size (512, 3)."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "WARN",
+      "message": "Smallest image side is 3 px (< 256). Fine details may be lost."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "9997 of 9997 images are not square."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "INFO",
+      "message": "Volumes: 512–512 slices (median 512)."
+    },
+    {
+      "section": "Size & resolution",
+      "status": "WARN",
+      "message": "Pixel size in mm is unknown (PNG/JPG/NPY carry none). No physical scanner geometry, no mm-based metrics (e.g. HD95 in mm). Check the paper for it."
+    },
+    {
+      "section": "Pixel values",
+      "status": "INFO",
+      "message": "Checked 30 random samples. Stored data type(s): float64."
+    },
+    {
+      "section": "Pixel values",
+      "status": "PASS",
+      "message": "Consistent intensity scale: normalised (0–1) (range 0 … 1)."
+    },
+    {
+      "section": "Patients & splits",
+      "status": "WARN",
+      "message": "No patient ID found (no DICOM tag, no PATIENT_ID_REGEX). You cannot prove a patient-level split → leakage risk. Find the ID in file names or a table."
+    },
+    {
+      "section": "Patients & splits",
+      "status": "INFO",
+      "message": "No train/val/test folders found: you'll make your own split (per patient, fixed seed)."
+    },
+    {
+      "section": "Labels & class balance",
+      "status": "WARN",
+      "message": "9997 of 9997 samples have no label."
+    },
+    {
+      "section": "Labels & class balance",
+      "status": "FAIL",
+      "message": "No labels found."
+    },
+    {
+      "section": "Balance & diversity",
+      "status": "TODO",
+      "message": "No acquisition/demographic metadata in the files (typical for PNG/NPY). Get scanner, site, sex, age distribution from the paper or a metadata table."
+    },
+    {
+      "section": "Duplicates",
+      "status": "WARN",
+      "message": "91 exact duplicate files (e.g. ['ID_00e2957ab.npy', 'ID_021b4a7ce.npy'])."
+    },
+    {
+      "section": "Duplicates",
+      "status": "PASS",
+      "message": "No near-duplicates among 300 sampled images."
+    },
+    {
+      "section": "Privacy",
+      "status": "INFO",
+      "message": "No DICOM headers to check. Still look at the images for burned-in text, and at head scans for recognisable faces."
+    },
+    {
+      "section": "Task fit",
+      "status": "TODO",
+      "message": "Modality not stored in the files — confirm it is CT."
+    },
+    {
+      "section": "Task fit",
+      "status": "WARN",
+      "message": "Intensities are normalised (0–1): find the conversion to HU/μ in the docs, otherwise simulated projections are only relative."
+    },
+    {
+      "section": "Task fit",
+      "status": "WARN",
+      "message": "Pixel size unknown → geometry in pixel units only."
+    },
+    {
+      "section": "Task fit",
+      "status": "INFO",
+      "message": "Only reconstructed images → you'll simulate sparse projections yourself (standard practice). Avoid the 'inverse crime': simulate on a finer grid / different projector than you reconstruct with, and add noise."
+    },
+    {
+      "section": "Task fit",
+      "status": "INFO",
+      "message": "Labels: none needed — the full-view image is the target. Note that the 'ground truth' is itself a reconstruction (noise, kernel, artefacts)."
+    }
+  ]
+}
