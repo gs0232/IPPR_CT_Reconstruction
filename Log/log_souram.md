@@ -1,4 +1,4 @@
-# Implementation Log Sophia
+# Implementation Log Souram
 
 ## Task
 Bla Bla Bla Placeholder for my task (e.g. Getting the subset, checking the scan geometry, sparsifying, normalising, patient split, dataloaders)
