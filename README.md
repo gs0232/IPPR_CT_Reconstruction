@@ -3,12 +3,12 @@
 ## Tasks
 | # | Task | Name | Notes | Deadline |
 | ------ | -------- | ------- | ------- | ------- |
-| 1 | Data | Souram | Getting the subset, checking the scan geometry, sparsifying, normalising, patient split, dataloaders | ------- |
-| 2 | Baselines | Sophia | FBP, SART, the shared metrics module, all result plots | ------- |
-| 3 | U-Net | Jule | Training and Tuning | ------- |
-| 3 | NeRF | Samantha | Per-scan NeRF reconstruction and view synthesis | ------- |
-| 3 | 3DGS | Gianne Lois | Per-scan 3DGS reconstruction and view synthesis | ------- |
-| 4 | Evaluation | Sophia | Evaluate based on metrics | ------- |
+| 1 | Data | Souram | Getting the subset, checking the scan geometry, sparsifying, normalising, patient split, dataloaders | 10.10 |
+| 2 | Baselines | Sophia | setting the FBP baselines and metrics | 18.10 |
+| 3 | U-Net | Jule | Training and Tuning | 18.10 |
+| 3 | NeRF | Samantha | Per-scan NeRF reconstruction and view synthesis | 18.10 |
+| 3 | 3DGS | Gianne Lois | Per-scan 3DGS reconstruction and view synthesis | 18.10 |
+| 4 | Evaluation | Sophia | Evaluate based on metrics | 21.10 |
 | 5 | Editing, Report, Slides | Medha | Shared repo/Colab, seeds and config, code appendix, comments in the code | 23.10 |
 | 6 | Presentation Video | All | 10 min Video | 23.10
 
