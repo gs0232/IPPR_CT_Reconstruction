@@ -1,5 +1,18 @@
 # IPPR_CT_Reconstruction
 
+## Tasks
+| # | Task | Name | Notes | Deadline |
+| ------ | -------- | ------- | ------- | ------- |
+| 1 | Data | Souram | Getting the subset, checking the scan geometry, sparsifying, normalising, patient split, dataloaders | ------- |
+| 2 | Baselines | Sophia | FBP, SART, the shared metrics module, all result plots | ------- |
+| 3 | U-Net | Jule | Training and Tuning | ------- |
+| 3 | NeRF | Samantha | Per-scan NeRF reconstruction and view synthesis | ------- |
+| 3 | 3DGS | Gianne Lois | Per-scan 3DGS reconstruction and view synthesis | ------- |
+| 4 | Evaluation | Sophia | Evaluate based on metrics | ------- |
+| 5 | Editing, Report, Slides | Medha | Shared repo/Colab, seeds and config, code appendix, comments in the code | 23.10 |
+| 6 | Presentation Video | All | 10 min Video | 23.10
+
+
 ## Introduction
 When undergoing a Computer Tomography (CT), patients are directly exposed to radiation.
 Since DNA gene expression is said to be affected by such procedures (Schmid et al., 2025), the
