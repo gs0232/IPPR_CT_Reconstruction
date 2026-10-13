@@ -1,10 +1,16 @@
 # Implementation Log Sophia
 
 ## Task
-Bla Bla Bla Placeholder for my task (e.g. Getting the subset, checking the scan geometry, sparsifying, normalising, patient split, dataloaders)
+Baseline and metric evaluation
 
 ## What I did/learned
 ### 7.10
-- bla
-- bla
-- bla
+- Set up Github
+
+### 13.10
+- Overview of what's to do in order to compute the baselines:
+  1. Check data for size, values, ... (1_data_check.ipynb)
+  2. Compute metrics
+  3. Normalization and baseline numbers
+  4. Plots
+- Problem occurred: generated sparse images do not match the provided original images --> Waiting for answer: I suggested to Souram that we should change the output of the FBP code so that we get the sparse-view AND full-view images from the sinograms instead of only the sparse-view.
