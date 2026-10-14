@@ -147,18 +147,3 @@ def train_one_epoch(model, dataloader, optimizer, loss_fn, device):
 
     return running_loss / len(dataloader.dataset)
 
-
-if __name__ == "__main__":
-    # Quick sanity check: does a forward pass run and produce the right shape?
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = UNet(in_channels=1, out_channels=1, base_channels=32).to(device)
-
-    dummy_input = torch.randn(2, 1, 256, 256).to(device)  # batch of 2, 256x256 slices
-    output = model(dummy_input)
-    print("Input shape:", dummy_input.shape)
-    print("Output shape:", output.shape)
-
-    # Example training setup (replace dataloader with your actual dataset)
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
-    loss_fn = nn.L1Loss()  # L1 tends to give sharper results than MSE for CT
-    print("Model, optimizer, and loss function initialized successfully.")
