@@ -18,3 +18,13 @@ Baseline and metric evaluation
 ### 15.10
 - Checking if the images are now comparable --> Worked!
 - Checking the size, values, ... of the data
+  - Images are barely different --> ask Souram if he can make another even more sparsed version
+  - Imgages are 888x888 and 8-bit RGBA PNGs (unit8)
+  - Limitation found: PNGs are saved as 8-bit images.
+- Create baseline and metric python file using Claude
+  - Otsu method is used to select masks of head
+  - Computes PSNR, SSIM and RMSE (whole image and head only)
+  - Makes a summary table (mean ± SD), the plot of PSNR/SSIM vs. number of views, and an example figure
+- Problem occurred: In parallel-beam CT, the projections at $\theta$ and $\theta + 180°$ contain the same information. Over 360°, 246 views therefore contain only 123 different views. --> The views should be spread evenly over 180°
+
+The baseline and metric file will be run in my next session. First, only 2 patients will be tested (MAX_SERIES=2) and if everything works out, MAX_SERIES=None to run the code on all patients.
