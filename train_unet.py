@@ -23,7 +23,7 @@ from unet_ct import UNet
 
 
 # Configuration
-ORIGINAL_DIR = Path("full_reconstrucion")
+FULL_DIR = Path("full_reconstruction")
 SPARSE_DIR = Path("sparse_reconstruction")
 
 IMG_SIZE = 256          # must be divisible by 16 (4 pooling stages in the U-Net)
