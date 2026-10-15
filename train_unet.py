@@ -23,8 +23,8 @@ from unet_ct import UNet
 
 
 # Configuration
-ORIGINAL_DIR = Path("Original_images")
-SPARSE_DIR = Path("Sparse_images")
+ORIGINAL_DIR = Path("full_reconstrucion")
+SPARSE_DIR = Path("sparse_reconstruction")
 
 IMG_SIZE = 256          # must be divisible by 16 (4 pooling stages in the U-Net)
 BATCH_SIZE = 4
@@ -49,32 +49,45 @@ def set_seed(seed):
 def file_index(path):
     """Extract the (last) number in a filename: 'slice_07.png' -> 7."""
     numbers = re.findall(r"\d+", path.stem)
-    return int(numbers[-1])
+    return int(numbers[-1]) if numbers else None
 
 
-def collect_pairs(patient_name):
-    """Return a list of (sparse_path, original_path) for one patient,
-    matched by the number in the filename (NOT by alphabetical order, since
-    'image_10' would otherwise sort before 'image_2')."""
-    orig_files = {file_index(p): p for p in (ORIGINAL_DIR / patient_name).glob("*.jpg")}
-    sparse_files = {file_index(p): p for p in (SPARSE_DIR / patient_name).glob("*.png")}
+def collect_pairs(series_name):
+    """Return a list of (sparse_path, full_path) for one series
+    (e.g. 'series_1009'), matched by the slice number in the filename.
+    The number of slices differs between series, so only slices that exist
+    in BOTH folders are used."""
+    full_files, sparse_files = {}, {}
+    for p in (FULL_DIR / series_name).glob("slice_*.png"):
+        idx = file_index(p)
+        if idx is not None:
+            full_files[idx] = p
+    for p in (SPARSE_DIR / series_name).glob("slice_*.png"):
+        idx = file_index(p)
+        if idx is not None:
+            sparse_files[idx] = p
 
-    common = sorted(set(orig_files) & set(sparse_files))
-    if len(common) != len(orig_files) or len(common) != len(sparse_files):
-        print(f"[warning] {patient_name}: {len(orig_files)} originals, "
+    common = sorted(set(full_files) & set(sparse_files))
+    if len(common) != len(full_files) or len(common) != len(sparse_files):
+        print(f"[warning] {series_name}: {len(full_files)} full, "
               f"{len(sparse_files)} sparse, {len(common)} matched")
-    return [(sparse_files[i], orig_files[i]) for i in common]
-
+    return [(sparse_files[i], full_files[i]) for i in common]
 
 
 # Dataset
-
 def load_gray(path):
-    """Load as grayscale, resize, scale to [0, 1], shape (1, H, W)."""
-    img = Image.open(path).convert("L").resize((IMG_SIZE, IMG_SIZE), Image.BILINEAR)
-    arr = np.asarray(img, dtype=np.float32) / 255.0
+    """Load a PNG as grayscale, resize, scale to [0, 1], shape (1, H, W).
+    Handles 8-bit PNGs (gray / RGB / RGBA) and 16-bit grayscale PNGs."""
+    img = Image.open(path)
+    if img.mode in ("I;16", "I"):                    # 16-bit grayscale PNG
+        arr = np.asarray(img, dtype=np.float32) / 65535.0
+        img = Image.fromarray(arr, mode="F")
+        img = img.resize((IMG_SIZE, IMG_SIZE), Image.BILINEAR)
+        arr = np.asarray(img, dtype=np.float32)
+    else:                                            # 8-bit PNG
+        img = img.convert("L").resize((IMG_SIZE, IMG_SIZE), Image.BILINEAR)
+        arr = np.asarray(img, dtype=np.float32) / 255.0
     return torch.from_numpy(arr).unsqueeze(0)
-
 
 class CTPairDataset(Dataset):
     """Holds all (sparse, original) pairs of a list of patients in memory
@@ -104,7 +117,14 @@ class CTPairDataset(Dataset):
 
 # Patient-level split
 def split_patients():
-    patients = sorted(p.name for p in ORIGINAL_DIR.iterdir() if p.is_dir())
+    # Only use series folders that exist in BOTH the full and the sparse directory
+    full_series = {p.name for p in FULL_DIR.iterdir() if p.is_dir() and p.name.startswith("series_")}
+    sparse_series = {p.name for p in SPARSE_DIR.iterdir() if p.is_dir() and p.name.startswith("series_")}
+    missing = full_series ^ sparse_series
+    if missing:
+        print(f"[warning] series only present in one directory (ignored): {sorted(missing)}")
+    patients = sorted(full_series & sparse_series)   # series_1009 ... series_1029
+    print(f"Found {len(patients)} series")
     random.Random(SEED).shuffle(patients)
 
     test = patients[:N_TEST_PATIENTS]
@@ -112,7 +132,6 @@ def split_patients():
     train = patients[N_TEST_PATIENTS + N_VAL_PATIENTS:]
     print(f"Train patients: {train}\nVal patients:   {val}\nTest patients:  {test}")
     return train, val, test
-
 
 # Training / evaluation
 def run_epoch(model, loader, loss_fn, optimizer=None):
