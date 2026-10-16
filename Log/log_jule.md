@@ -88,3 +88,104 @@ shows mentioned issues in comparability with baseline
 
 none-sparse- and sparse images from the same reconstruction algorithm were included
 20 patients with ca. 30 images per patient should be enough training material
+
+angefangener zweiter trainingsdruchlauf:
+Found 21 series
+Train patients: ['series_1013', 'series_1018', 'series_1022', 'series_1024', 'series_1027', 'series_1015', 'series_1021', 'series_1026', 'series_1019', 'series_1010', 'series_1020', 'series_1011', 'series_1025', 'series_1016', 'series_1017', 'series_1009', 'series_1012', 'series_1029']
+Val patients:   ['series_1023']
+Test patients:  ['series_1028', 'series_1014']
+Images -> train: 712, val: 32, test: 72
+Epoch 001 | train L1 0.03520 | val L1 0.03242  <- saved
+Epoch 002 | train L1 0.01450 | val L1 0.01041  <- saved
+Epoch 003 | train L1 0.01170 | val L1 0.01175
+Epoch 004 | train L1 0.01014 | val L1 0.01646
+Epoch 005 | train L1 0.00949 | val L1 0.00836  <- saved
+Epoch 006 | train L1 0.00809 | val L1 0.01073
+Epoch 007 | train L1 0.00684 | val L1 0.00695  <- saved
+Epoch 008 | train L1 0.00654 | val L1 0.00661  <- saved
+Epoch 009 | train L1 0.00597 | val L1 0.00720
+Epoch 010 | train L1 0.00497 | val L1 0.00669
+Epoch 011 | train L1 0.00505 | val L1 0.01962
+Epoch 012 | train L1 0.00471 | val L1 0.00493  <- saved
+Epoch 013 | train L1 0.00432 | val L1 0.00492  <- saved
+Epoch 014 | train L1 0.00445 | val L1 0.00459  <- saved
+Epoch 015 | train L1 0.00422 | val L1 0.00705
+Epoch 016 | train L1 0.00422 | val L1 0.00430  <- saved
+Epoch 017 | train L1 0.00389 | val L1 0.00594
+Epoch 018 | train L1 0.00375 | val L1 0.00510
+Epoch 019 | train L1 0.00380 | val L1 0.00629
+Epoch 020 | train L1 0.00345 | val L1 0.00297  <- saved
+Epoch 021 | train L1 0.00350 | val L1 0.00303
+Epoch 022 | train L1 0.00331 | val L1 0.00302
+Epoch 023 | train L1 0.00338 | val L1 0.00280  <- saved
+Epoch 024 | train L1 0.00326 | val L1 0.00329
+
+
+### 16.10
+major issues with completing model training
+training takes multiple hours
+notebook for collab created
+running in collab results in issues when trying to mount drive
+no solution found yet
+
+first complete trainrun on 20 patients:
+
+Found 21 series
+Train patients: ['series_1013', 'series_1018', 'series_1022', 'series_1024', 'series_1027', 'series_1015', 'series_1021', 'series_1026', 'series_1019', 'series_1010', 'series_1020', 'series_1011', 'series_1025', 'series_1016', 'series_1017', 'series_1009', 'series_1012', 'series_1029']
+Val patients:   ['series_1023']
+Test patients:  ['series_1028', 'series_1014']
+Images -> train: 712, val: 32, test: 72
+Epoch 001 | train L1 0.03520 | val L1 0.03242  <- saved
+Epoch 002 | train L1 0.01450 | val L1 0.01041  <- saved
+Epoch 003 | train L1 0.01170 | val L1 0.01175
+Epoch 004 | train L1 0.01014 | val L1 0.01646
+Epoch 005 | train L1 0.00949 | val L1 0.00836  <- saved
+Epoch 006 | train L1 0.00809 | val L1 0.01073
+Epoch 007 | train L1 0.00684 | val L1 0.00695  <- saved
+Epoch 008 | train L1 0.00654 | val L1 0.00661  <- saved
+Epoch 009 | train L1 0.00597 | val L1 0.00720
+Epoch 010 | train L1 0.00497 | val L1 0.00669
+Epoch 011 | train L1 0.00505 | val L1 0.01962
+Epoch 012 | train L1 0.00471 | val L1 0.00493  <- saved
+Epoch 013 | train L1 0.00432 | val L1 0.00492  <- saved
+Epoch 014 | train L1 0.00445 | val L1 0.00459  <- saved
+Epoch 015 | train L1 0.00422 | val L1 0.00705
+Epoch 016 | train L1 0.00422 | val L1 0.00430  <- saved
+Epoch 017 | train L1 0.00389 | val L1 0.00594
+Epoch 018 | train L1 0.00375 | val L1 0.00510
+Epoch 019 | train L1 0.00380 | val L1 0.00629
+Epoch 020 | train L1 0.00345 | val L1 0.00297  <- saved
+Epoch 021 | train L1 0.00350 | val L1 0.00303
+Epoch 022 | train L1 0.00331 | val L1 0.00302
+Epoch 023 | train L1 0.00338 | val L1 0.00280  <- saved
+Epoch 024 | train L1 0.00326 | val L1 0.00329
+Epoch 025 | train L1 0.00334 | val L1 0.00316
+Epoch 026 | train L1 0.00324 | val L1 0.00322
+Epoch 027 | train L1 0.00362 | val L1 0.00311
+Epoch 028 | train L1 0.00333 | val L1 0.00235  <- saved
+Epoch 029 | train L1 0.00300 | val L1 0.00374
+Epoch 030 | train L1 0.00314 | val L1 0.00281
+Epoch 031 | train L1 0.00337 | val L1 0.00246
+Epoch 032 | train L1 0.00293 | val L1 0.00190  <- saved
+Epoch 033 | train L1 0.00294 | val L1 0.00214
+Epoch 034 | train L1 0.00284 | val L1 0.00344
+Epoch 035 | train L1 0.00311 | val L1 0.00302
+Epoch 036 | train L1 0.00305 | val L1 0.00264
+Epoch 037 | train L1 0.00267 | val L1 0.00326
+Epoch 038 | train L1 0.00272 | val L1 0.00414
+Epoch 039 | train L1 0.00275 | val L1 0.00237
+Epoch 040 | train L1 0.00257 | val L1 0.00170  <- saved
+Epoch 041 | train L1 0.00253 | val L1 0.00227
+Epoch 042 | train L1 0.00268 | val L1 0.00280
+Epoch 043 | train L1 0.00239 | val L1 0.00163  <- saved
+Epoch 044 | train L1 0.00266 | val L1 0.00228
+Epoch 045 | train L1 0.00230 | val L1 0.00204
+Epoch 046 | train L1 0.00230 | val L1 0.00174
+Epoch 047 | train L1 0.00243 | val L1 0.00219
+Epoch 048 | train L1 0.00260 | val L1 0.00182
+Epoch 049 | train L1 0.00231 | val L1 0.00231
+Epoch 050 | train L1 0.00252 | val L1 0.00203
+
+=== Test set (held-out patients) ===
+ input:  PSNR 54.33 dB   SSIM 0.9977
+  unet:  PSNR 52.61 dB   SSIM 0.9981
