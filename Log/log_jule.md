@@ -189,3 +189,82 @@ Epoch 050 | train L1 0.00252 | val L1 0.00203
 === Test set (held-out patients) ===
  input:  PSNR 54.33 dB   SSIM 0.9977
   unet:  PSNR 52.61 dB   SSIM 0.9981
+
+  => 
+  - Unet pipeline works
+  - no indicator of whether unet works for reconstruction or not
+
+  possible issue: images are not sparsed enough
+
+  ### 18.10
+  comparison skript for images yiels following results:
+
+  Series found: 21
+  series_1009/slice_22.png: mode=RGBA, size=(888, 888)
+  series_1009/slice_22.png: mode=RGBA, size=(888, 888)
+series_1009: mean diff = 0.72, max diff = 8.0 (gray levels of 255)
+  series_1010/slice_23.png: mode=RGBA, size=(888, 888)
+  series_1010/slice_23.png: mode=RGBA, size=(888, 888)
+series_1010: mean diff = 0.58, max diff = 7.0 (gray levels of 255)
+  series_1011/slice_16.png: mode=RGBA, size=(888, 888)
+  series_1011/slice_16.png: mode=RGBA, size=(888, 888)
+series_1011: mean diff = 0.62, max diff = 8.0 (gray levels of 255)
+  series_1012/slice_22.png: mode=RGBA, size=(888, 888)
+  series_1012/slice_22.png: mode=RGBA, size=(888, 888)
+series_1012: mean diff = 0.58, max diff = 8.0 (gray levels of 255)
+  series_1013/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1013/slice_20.png: mode=RGBA, size=(888, 888)
+series_1013: mean diff = 0.69, max diff = 9.0 (gray levels of 255)
+  series_1014/slice_16.png: mode=RGBA, size=(888, 888)
+  series_1014/slice_16.png: mode=RGBA, size=(888, 888)
+series_1014: mean diff = 0.47, max diff = 6.0 (gray levels of 255)
+  series_1015/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1015/slice_20.png: mode=RGBA, size=(888, 888)
+series_1015: mean diff = 0.56, max diff = 6.0 (gray levels of 255)
+  series_1016/slice_16.png: mode=RGBA, size=(888, 888)
+  series_1016/slice_16.png: mode=RGBA, size=(888, 888)
+series_1016: mean diff = 0.74, max diff = 8.0 (gray levels of 255)
+  series_1017/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1017/slice_20.png: mode=RGBA, size=(888, 888)
+series_1017: mean diff = 0.88, max diff = 9.0 (gray levels of 255)
+  series_1018/slice_18.png: mode=RGBA, size=(888, 888)
+  series_1018/slice_18.png: mode=RGBA, size=(888, 888)
+series_1018: mean diff = 0.92, max diff = 7.0 (gray levels of 255)
+  series_1019/slice_19.png: mode=RGBA, size=(888, 888)
+  series_1019/slice_19.png: mode=RGBA, size=(888, 888)
+series_1019: mean diff = 0.56, max diff = 8.0 (gray levels of 255)
+  series_1020/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1020/slice_20.png: mode=RGBA, size=(888, 888)
+series_1020: mean diff = 0.86, max diff = 8.0 (gray levels of 255)
+  series_1021/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1021/slice_20.png: mode=RGBA, size=(888, 888)
+series_1021: mean diff = 0.60, max diff = 7.0 (gray levels of 255)
+  series_1022/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1022/slice_20.png: mode=RGBA, size=(888, 888)
+series_1022: mean diff = 0.57, max diff = 7.0 (gray levels of 255)
+  series_1023/slice_16.png: mode=RGBA, size=(888, 888)
+  series_1023/slice_16.png: mode=RGBA, size=(888, 888)
+series_1023: mean diff = 0.45, max diff = 7.0 (gray levels of 255)
+  series_1024/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1024/slice_20.png: mode=RGBA, size=(888, 888)
+series_1024: mean diff = 0.81, max diff = 8.0 (gray levels of 255)
+  series_1025/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1025/slice_20.png: mode=RGBA, size=(888, 888)
+series_1025: mean diff = 0.80, max diff = 7.0 (gray levels of 255)
+  series_1026/slice_22.png: mode=RGBA, size=(888, 888)
+  series_1026/slice_22.png: mode=RGBA, size=(888, 888)
+series_1026: mean diff = 0.66, max diff = 8.0 (gray levels of 255)
+  series_1027/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1027/slice_20.png: mode=RGBA, size=(888, 888)
+series_1027: mean diff = 0.50, max diff = 8.0 (gray levels of 255)
+  series_1028/slice_20.png: mode=RGBA, size=(888, 888)
+  series_1028/slice_20.png: mode=RGBA, size=(888, 888)
+series_1028: mean diff = 0.86, max diff = 7.0 (gray levels of 255)
+  series_1029/slice_18.png: mode=RGBA, size=(888, 888)
+  series_1029/slice_18.png: mode=RGBA, size=(888, 888)
+series_1029: mean diff = 1.15, max diff = 11.0 (gray levels of 255)
+
+plus check_sparse_vs_full.png
+
+suggest that images are too similar
+especially in the middle where skull is is almost no difference
