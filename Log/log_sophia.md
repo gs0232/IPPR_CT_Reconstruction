@@ -4,10 +4,10 @@
 Baseline and metric evaluation
 
 ## What I did/learned
-### 7.10
+### 7.10 - Github
 - Set up Github
 
-### 13.10
+### 13.10 - Overview
 - Overview of what's to do in order to compute the baselines:
   1. Check data for size, values, ... (1_data_check.ipynb)
   2. Compute metrics
@@ -15,11 +15,11 @@ Baseline and metric evaluation
   4. Plots
 - Problem occurred: generated sparse images do not match the provided original images --> Waiting for answer: I suggested to Souram that we should change the output of the FBP code so that we get the sparse-view AND full-view images from the sinograms instead of only the sparse-view.
 
-### 15.10
+### 15.10 - Image Preprocessing + Baseline files
 - Checking if the images are now comparable --> Worked!
 - Checking the size, values, ... of the data
-  - Images are barely different (Baslines/figures/comparison_full_sparse_histogram.png) --> sparse images even more
-  - Imgages are 888x888 and 8-bit RGBA PNGs (unit8)
+  - Images are barely different (Baselines/figures/comparison_full_sparse_histogram.png) --> the sparse images need stronger sparsity to be a meaningful baseline
+  - Images are 888x888 and 8-bit RGBA PNGs (uint8)
   - Limitation found: PNGs are saved as 8-bit images.
 - Create baseline and metric python file using Claude
   - Otsu method is used to select masks of head
@@ -29,7 +29,39 @@ Baseline and metric evaluation
 
 The baseline and metric file will be run in my next session. First, only 2 patients will be tested (MAX_SERIES=2) and if everything works out, MAX_SERIES=None to run the code on all patients.
 
-### 17.10
+### 17.10 - Baseline
 - Running the baseline file on two images/sinograms
   - Creating the images for 25%, 10%, 5%, and 2.5% of sparse
+  - Only every 4th slice was used (SLICE_STEP = 4) to save time.
+  - Souram’s “50%” (every 2nd angle over 360°) contains the same information as our 246 views (25%)
+  - Sanity check: our full-view FBP matches Souram’s full-view PNG (SSIM $= 0.999$), so ANGLE_RANGE = 360 is correct.
   - Using the Otsu method to extract the head masks (Baselines/figures/sparse_images_head_mask.png)
+- Current limitation: imgaes had to be sparsed more; the SinoCT sinograms were computed from the finished images, so our artefacts come only from missing angles (no real scanner noise). Results are therefore slightly optimistic.; the U-Net, NeRF and 3DGS must use my ground truth and the same angles, otherwise their results aren’t comparable to the baseline (`baseline_results/gt_fullview_npy/series_XXXX_sliceYY.npy`).
+ 
+### 18.10 - Baseline
+- Run main loop: FBP baseline over all series
+  - The full-view ground truth is cached as `.npy` on Drive (`baseline_results/gt_fullview_npy/series_XXXX_sliceYY.npy`), so it is only computed once
+  (U-Net / NeRF / 3DGS can use the same files as their ground truth).
+  - Results are appended to `fbp_baseline.csv`
+- Extract SSIM, PSNR, RMSE for head and whole image (mean +- std)
+  - Results in `fbp_baseline_summary.csv`
+  - Plot in `psnr_ssim_baseline.png`
+
+**IMPORTANT NOTE TO JULE, SAMANTHA AND GIANNE LOIS:**
+- The ground truths are in the Drive folder here: [https://drive.google.com/drive/folders/1VzUAMYD5p1QxiqmAUdYOtaDazxYKPoT9?usp=sharing](https://drive.google.com/drive/folders/1sKGq4ms9Y9b9G2BW_m6IgPDBlgAqYTtq?usp=sharing)
+- I uploaded the full view .npy files in `baseline_results/gt_fullview_npy`
+- Souram’s “50%” (every 2nd angle over 360°) contains the same information as my 246 views (25%)
+- Make your sparse input from the sinogram with exactly these angles, so all methods
+  get the same input as the FBP baseline:
+```python
+  idx   = np.round(np.linspace(0, 492, n_views, endpoint=False)).astype(int)  # n_views = 246, 98, 49 or 25
+  theta = np.linspace(0, 360, 984, endpoint=False)[idx]   # angles in degrees
+  sparse_sino = sino[:, idx]                              # sino shape: (888 detectors, 984 angles)
+```
+- Save your reconstructions as float `.npy`, 888×888, named `series_XXXX_sliceYY_vNNN.npy`
+  (e.g. `series_1009_slice08_v098.npy`). Do NOT rescale them to 0–1 yourself.
+- Put your reconstructions in the Drive folder `outputs/<method>/` (e.g. `outputs/unet/`) by 20.10.
+  I (Sophia) run the final evaluation for all methods with the same code.
+  Optional while developing: check your own results with `from metrics import evaluate` → `evaluate(pred, gt)`.
+
+
