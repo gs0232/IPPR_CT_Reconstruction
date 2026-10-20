@@ -64,4 +64,11 @@ The baseline and metric file will be run in my next session. First, only 2 patie
   I (Sophia) run the final evaluation for all methods with the same code.
   Optional while developing: check your own results with `from metrics import evaluate` → `evaluate(pred, gt)`.
 
+### 21.10 - Data availability
+- Agreed on: the model-makers will give me their output as a reconstructed PNGs, I will compare them to my gt
+  - Output naming: series_XXXX_sliceYY_vNNN.png (example: series_1009_slice08_v098.png)
+- Agreed on: reducing number of patients for training and validation
+  - 21 training patients (1009-1029)
+  - 10 validation patients (1030-1039)
+
 
