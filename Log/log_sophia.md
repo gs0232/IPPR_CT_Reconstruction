@@ -70,5 +70,31 @@ The baseline and metric file will be run in my next session. First, only 2 patie
 - Agreed on: reducing number of patients for training and validation
   - 21 training patients (1009-1029)
   - 10 validation patients (1030-1039)
+ 
+### 23.10 - Evaluation
+- Evaluation of NeRF and 3DGS by running the 03_evaluation.ipynb notebook
+- Figures are in the Google Drive under evaluation_results
 
+# Results:
+- PSNR is practically the same for all three methods (about $22.3$–$22.5$ dB). The differences are far smaller than the SD.
+- SSIM: FBP $0.795$ > NeRF $0.679$ > 3DGS $0.367$.
+- Equal PSNR combined with lower SSIM usually means the methods get the average grey values right but lose fine structure. NeRF blurs; 3DGS shows patchy or noisy texture. FBP has streaks but keeps edges and detail.
+
+For the report: at 98 views (10%), NeRF and 3DGS remove the streak artefacts in the background, but they don’t reconstruct the head itself better than FBP. Our success criterion (“higher PSNR and SSIM than FBP”) is met for the whole image but not inside the head.
+
+### FBP:
+- Fine streaks in the whole background. That’s why its whole-image SSIM is lower.
+- Inside the head the image looks closest to the ground truth: sharp skull, smooth brain.
+- The error is concentrated in a thin ring along the skull edge, where the contrast is highest.
+
+### NeRF:
+- Very blurred. The skull is no longer a sharp ring but a soft edge, and the brain has a blotchy texture.
+- The structures below the skull (neck, soft tissue) are missing almost entirely.
+- The background is clean, which is why its whole-image SSIM is very high.
+- Head-only, it’s clearly worse than FBP: typical underfitting / missing fine detail. The cause may be too few training iterations, too low a resolution or too weak positional encoding. Ask Samantha.
+
+### 3DGS:
+- The skull is reproduced well, but the brain is full of fine grainy texture. You can see the individual Gaussians.
+- The background has scattered dots, so-called “floaters”.
+- The ground-truth brain is very smooth, so this grain lowers the head SSIM a lot ($0.367$). It varies from slice to slice depending on how well the Gaussians converged, which explains the high SD.
 
