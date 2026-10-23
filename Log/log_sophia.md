@@ -73,7 +73,8 @@ The baseline and metric file will be run in my next session. First, only 2 patie
  
 ### 23.10 - Evaluation
 - Evaluation of NeRF and 3DGS by running the 03_evaluation.ipynb notebook
-- Figures are in the Google Drive under evaluation_results
+- Figures are in the Google Drive under evaluation_results (summary_metrics_nerf_3dgs.png, evaluation_bars.png, comparison_example.png)
+  https://drive.google.com/drive/folders/1oAEy2eY6jiNFTqkNCpEWnyM5ddjrrEGJ?usp=drive_link 
 
 # Results:
 - PSNR is practically the same for all three methods (about $22.3$–$22.5$ dB). The differences are far smaller than the SD.
