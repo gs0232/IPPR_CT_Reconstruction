@@ -63,7 +63,28 @@ Group decision: validation = `series_1030` … `series_1039`. Hyper-parameters a
 Every run gets its own `tag`, so outputs go to `<out_dir>/_<tag>/`. Change one thing at a time, compare the summary tables, then write the winning values into the `Cfg` defaults (§1) and into `Log/log_gianne.md`.
 Knobs by importance: `iters`, `n_init`, `lr_xy`, `lr_rho`, `tv_weight` {0, 0.005, 0.01, 0.05}, `densify_*`, `split_px`, `init` ("image" vs "random").
 
-### Summary Notes
+### Summary 
+#### Challenges
+- Long execution times: Reconstructing each CT slice requires repeated Gaussian projection, gradient computation and parameter optimisation. Running hundreds of iterations across many slices made tuning and testing time-consuming.
+- Gradient checkpointing error: PyTorch raised a CheckpointError during loss.backward() because the checkpointed function saved different numbers of tensors during the original forward pass and recomputation.
+- Series selection confusion: The active configuration initially ran a different range of series than the intended final evaluation set. The series variables and cfg.series needed to be aligned.
+- Memory constraints: The Gaussian model uses many components and differentiable projection operations, creating substantial GPU memory demands. This was a potential constraint when considering faster execution settings.
+
+
+#### Tuning
+1. iters (500 → 400): Reduces the number of optimisation steps per slice, shortening tuning time while retaining iterations for an initial reconstruction quality comparison.
+
+2. n_init (15,000 → 5,000): Reduces the number of initial Gaussian components, lowering computational costs and GPU memory usage.
+
+3. max_gaussians (40,000 → 10,000): Keeps the existing upper limit on Gaussian growth to control computational and memory demands.
+
+4. tv_weight (0.01 → 0.0): Disables total variation regularisation during preliminary tuning, reducing additional computation, although this may affect reconstruction smoothness and quality.
+
+5. view_synthesis (True → False): Skips held-out projection evaluation during tuning to reduce runtime.
+
+6. save_preview (True → False): Disables preview image generation, reducing image-processing overhead and file-writing time.
+
+#### Notes
 - Protocol: sparse-view PNG in → reconstructed PNG out (`series_XXXX_sliceYY_v098.png`, 8-bit greyscale, same intensity convention as the input PNG), test series only, slices 00/04/08/… that have a ground truth.
 - Per-scan optimisation: one Gaussian set per slice, no training data. Validation patients (series_1030–1039) were used only to tune hyper-parameters; the ground truth is used only for evaluation.
 - The PNGs are min–max-normalised FBP images: background grey level (≈ 16/255) is removed before projecting and restored before saving. The pseudo-sinogram is `radon` of the sparse PNG at the 98 known angles (= `angle_indices.npy`), so it only contains the information that is in the PNG (8-bit, FBP-filtered) – a limitation compared with fitting the raw measured sinograms.
@@ -71,3 +92,4 @@ Knobs by importance: `iters`, `n_init`, `lr_xy`, `lr_rho`, `tv_weight` {0, 0.005
 - View synthesis is scored against projections of the ground-truth image (not raw scanner data), after matching a global gain.
 - `runtime_s` includes PNG→sinogram + optimisation + render; compare with FBP (~seconds) and U-Net (single forward pass after training) in the report.
 - Limitations to mention: 2D slice-wise model (no 3D consistency across slices); dense projector is slow; 8-bit input; hyper-parameters tuned on a few validation slices only.
+
