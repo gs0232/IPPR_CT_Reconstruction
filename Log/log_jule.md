@@ -268,3 +268,61 @@ plus check_sparse_vs_full.png
 
 suggest that images are too similar
 especially in the middle where skull is is almost no difference
+
+final train run + image reconstruction for evaluation and comparison:
+
+Found 30 series
+Train patients (20): ['series_1009', 'series_1010', 'series_1011', 'series_1012', 'series_1013', 'series_1014', 'series_1015', 'series_1016', 'series_1017', 'series_1018', 'series_1019', 'series_1020', 'series_1021', 'series_1022', 'series_1023', 'series_1024', 'series_1025', 'series_1026', 'series_1027', 'series_1028']
+Val patients   (0): []
+Recon patients (10): ['series_1029', 'series_1030', 'series_1031', 'series_1032', 'series_1033', 'series_1034', 'series_1035', 'series_1036', 'series_1037', 'series_1038']
+Images -> train: 780, val: 0
+Epoch 001 | train L1 0.03603
+Epoch 002 | train L1 0.01687
+Epoch 003 | train L1 0.01294
+Epoch 004 | train L1 0.01006
+Epoch 005 | train L1 0.00825
+Epoch 006 | train L1 0.00699
+Epoch 007 | train L1 0.00616
+Epoch 008 | train L1 0.00541
+Epoch 009 | train L1 0.00521
+Epoch 010 | train L1 0.00509
+Epoch 011 | train L1 0.00470
+Epoch 012 | train L1 0.00457
+Epoch 013 | train L1 0.00410
+Epoch 014 | train L1 0.00417
+Epoch 015 | train L1 0.00404
+Epoch 016 | train L1 0.00372
+Epoch 017 | train L1 0.00321
+Epoch 018 | train L1 0.00367
+Epoch 019 | train L1 0.00375
+Epoch 020 | train L1 0.00390
+Epoch 021 | train L1 0.00346
+Epoch 022 | train L1 0.00342
+Epoch 023 | train L1 0.00319
+Epoch 024 | train L1 0.00328
+Epoch 025 | train L1 0.00320
+Epoch 026 | train L1 0.00306
+Epoch 027 | train L1 0.00311
+Epoch 028 | train L1 0.00286
+Epoch 029 | train L1 0.00278
+Epoch 030 | train L1 0.00295
+Epoch 031 | train L1 0.00289
+Epoch 032 | train L1 0.00267
+Epoch 033 | train L1 0.00267
+Epoch 034 | train L1 0.00270
+Epoch 035 | train L1 0.00261
+Epoch 036 | train L1 0.00287
+Epoch 037 | train L1 0.00260
+Epoch 038 | train L1 0.00259
+Epoch 039 | train L1 0.00268
+Epoch 040 | train L1 0.00295
+Epoch 041 | train L1 0.00240
+Epoch 042 | train L1 0.00239
+Epoch 043 | train L1 0.00245
+Epoch 044 | train L1 0.00265
+Epoch 045 | train L1 0.00242
+Epoch 046 | train L1 0.00238
+Epoch 047 | train L1 0.00217
+Epoch 048 | train L1 0.00239
+Epoch 049 | train L1 0.00236
+Epoch 050 | train L1 0.00224
